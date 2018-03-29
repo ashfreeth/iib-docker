@@ -21,7 +21,7 @@ stop()
 start()
 {
 	echo "----------------------------------------"
-        /opt/ibm/iib-10.0.0.11/iib version
+        /opt/ibm/iib-10.0.0.12/iib version
 	echo "----------------------------------------"
 
         NODE_EXISTS=`mqsilist | grep $NODE_NAME > /dev/null ; echo $?`
@@ -32,13 +32,13 @@ start()
           echo "Node $NODE_NAME does not exist..."
           echo "Creating node $NODE_NAME"
           mqsicreatebroker $NODE_NAME
-          echo "----------------------------------------" 
+          echo "----------------------------------------"
           echo "----------------------------------------"
           echo "Starting syslog"
           sudo /usr/sbin/rsyslogd
           echo "Starting node $NODE_NAME"
           mqsistart $NODE_NAME
-          echo "----------------------------------------" 
+          echo "----------------------------------------"
           echo "----------------------------------------"
           echo "Creating integration server $SERVER_NAME"
           mqsicreateexecutiongroup $NODE_NAME -e $SERVER_NAME -w 120
@@ -48,7 +48,7 @@ start()
           for f in /tmp/BARs/* ; do
             echo "Deploying $f ..."
             mqsideploy $NODE_NAME -e $SERVER_NAME -a $f -w 120
-          done		  
+          done
           echo "----------------------------------------"
           echo "----------------------------------------"
 	else
@@ -57,7 +57,7 @@ start()
           sudo /usr/sbin/rsyslogd
           echo "Starting node $NODE_NAME"
           mqsistart $NODE_NAME
-          echo "----------------------------------------" 
+          echo "----------------------------------------"
           echo "----------------------------------------"
 	fi
 }
